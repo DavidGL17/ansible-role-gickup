@@ -1,0 +1,68 @@
+source:
+{% if enable_github_sync %}
+  github:
+    - token: {{ github_user_token }}
+    # alternatively, specify token in a file, relative to current working directory when executed.
+      # token_file: token.txt
+      user: {{ github_user }} # the user you want to clone the repositories from.
+      # if you want to get everything from your user, leave out the user parameter and just use the token.
+      # for the clone process, either use:
+      # - username + password
+      # - sshkey
+      # - token
+      username: {{ github_username }} # user is used to clone the repo with
+      password: {{ github_password }}
+      ssh: {{ github_ssh_enabled }} # can be true or false
+      sshkey: {{ github_ssh_key }} # if empty, it uses your home directories' .ssh/id_rsa
+      exclude: {{ github_exclude_list }}
+      include: {{ github_include_list }}
+      excludeorgs: {{ github_exclude_orgs }}
+      wiki: {{ github_wiki_enable }} 
+{% endif %}
+
+{% if enable_gitlab_sync %}
+  gitlab:
+    - token: {{ gitlab_user_token }}
+      # token_file: token.txt # alternatively, specify token in a file
+      user: {{ gitlab_user }} # the user you want to clone the repositories from.
+      url: {{ gitlab_url }} # if empty, it uses https://gitlab.com
+      # if you want to get everything from your user, leave out the user parameter and just use the token.
+      # for the clone process, either use:
+      # - username + password
+      # - sshkey
+      # - token
+      username: {{ gitlab_username }} # user is used to clone the repo with
+      password: {{ gitlab_password }}
+      ssh: {{ gitlab_ssh_enabled }} # can be true or false
+      sshkey: {{ gitlab_ssh_key }} # if empty, it uses your home directories' .ssh/id_rsa
+      exclude: {{ gitlab_exclude_list }}
+      include: {{ gitlab_include_list }}
+      excludeorgs: {{ gitlab_exclude_orgs }}
+      wiki: {{ gitlab_wiki_enable }} # includes wiki too
+{% endif %}
+
+destination:
+  local:
+    - path: {{ destination_local_path }}
+      structured: {{ destination_local_structured }} # checks repos out like hostersite/user|organization/repo
+
+{% if enable_cron %}
+cron: {{ cron_value }} # optional
+{% endif %}
+
+{% if enable_log %}
+log: # optional
+  timeformat: {{ log_timeformat }} # you can use a custom time format, use https://yourbasic.org/golang/format-parse-string-time-date-example/ to check how date formats work in go
+  {% if enable_file_logging %}
+  file-logging: # optional
+    dir: {{ file_logging_dir }} # directory to log into
+    file: {{ file_logging_file }} # file to log into
+    maxage: {{ file_logging_maxage }} # keep logs for 7 days
+  {% endif %}
+{% endif %}
+
+metrics:
+  prometheus:
+    endpoint: {{ metrics_endpoint }}
+    listen_addr: {{ metrics_listen_address }} 
+

@@ -1,0 +1,7 @@
+---
+- name: Restart gickup
+  community.docker.docker_compose:
+    project_src: "{{ base_folder }}"
+    build: false
+    restarted: true
+  become: false

@@ -1,0 +1,29 @@
+---
+
+- name: Ensure base folder exists
+  file: 
+    path: "{{ base_folder }}"
+    state: directory
+    mode: '0755'
+    owner: 1000
+    group: 1000
+
+- name: copy docker-compose and config templates
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ base_folder }}/{{ item.dest }}" 
+    owner: 1000
+    group: 1000
+    mode: '0664'
+  with_items: 
+    - src: gickup-docker-compose.yml.j2
+      dest: docker-compose.yml
+    - src: gickup-conf.yml.j2
+      dest: conf.yml
+  notify: Restart gickup
+
+- name: Ensure gickup is running.
+  community.docker.docker_compose:
+    project_src: "{{ base_folder }}"
+    build: false
+  become: false

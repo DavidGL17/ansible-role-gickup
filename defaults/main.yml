@@ -1,0 +1,102 @@
+---
+# general variables
+
+base_folder: ~/gickup
+
+timezone: Europe/Zurich
+
+#
+# conf
+#
+
+# github
+
+enable_github_sync: false
+
+github_user_token: "none"
+
+github_user: "none"
+
+github_username: "none"
+
+github_password: "none"
+
+github_ssh_enabled: false
+
+github_ssh_key:  # can be a path, if none given will use .ssh/id_rsa
+
+github_exclude_list: []
+
+github_include_list: []
+
+github_exclude_orgs: []
+
+github_wiki_enable: false
+
+# gitlab
+
+enable_gitlab_sync: false
+
+gitlab_user_token: "none"
+
+gitlab_user: "none"
+
+gitlab_url: "https://gitlab.com"
+
+gitlab_username: "none"
+
+gitlab_password: "none"
+
+gitlab_ssh_enabled: false
+
+gitlab_ssh_key:  # can be a path, if none given will use .ssh/id_rsa
+
+gitlab_exclude_list: []
+
+gitlab_include_list: []
+
+gitlab_exclude_orgs: []
+
+gitlab_wiki_enable: false
+
+#
+# Destination
+#
+
+# local
+
+destination_local_path: "{{ base_folder }}"
+
+destination_local_structured: true
+
+#
+# Cron:
+#
+
+enable_cron: true
+
+cron_value: "0 22 * * *"
+
+#
+# log
+#
+
+enable_log: true
+
+log_timeformat: "2006-01-02 15:04:05"
+
+enable_file_logging: true
+
+file_logging_dir: "log"
+
+file_logging_file: "gickup.log"
+
+file_logging_maxage: 42
+
+#
+# Metrics
+#
+
+metrics_endpoint: "/metrics"
+
+metrics_listen_address: ":6178"
