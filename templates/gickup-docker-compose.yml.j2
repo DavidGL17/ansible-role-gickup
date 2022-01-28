@@ -2,13 +2,13 @@ version: "3"
 services:
   gickup:
     container_name: gickup
+    build: .
     image: buddyspencer/gickup:latest
     volumes:
-      - './conf.yml:/gickup/conf.yml' 
-      - '.{{ destination_local_path }}:/output'
+      - '{{ destination_local_path }}/conf.yml:/gickup/conf.yml' 
+      - '{{ destination_local_path }}:/output'
     environment:
       TZ: {{ timezone }}
-    tty: true
     command: ["/gickup/conf.yml"]
     restart: unless-stopped
 

@@ -65,7 +65,7 @@ gitlab_wiki_enable: false
 
 # local
 
-destination_local_path: "{{ base_folder }}"
+destination_local_path: "{{ base_folder }}/output"
 
 destination_local_structured: true
 

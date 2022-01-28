@@ -23,8 +23,45 @@
   vars:
     pip_install_packages:
       - name: docker-compose
+      - name: docker
+    docker_users:
+      - root
 
-  roles: 
-    - geerlingguy.pip
-    - geerlingguy.docker
-    - ansible-role-gickup
+  tasks: 
+    - name: import pip role
+      import_role: 
+        name: geerlingguy.pip
+
+    - name: import docker role
+      import_role: 
+        name: geerlingguy.docker
+
+    # insert tasks to remove aufs error
+
+    - name: check if daemon file exists
+      stat:
+        path: /etc/docker/daemon.json
+      register: daemon_file
+
+    - name: Fix aufs error
+      when: daemon_file.stat.exists != true
+      block: 
+        - name: stop docker
+          service:
+            name: docker
+            state: stopped
+        
+        - name: copy daemon file
+          copy:
+            src: "daemon.json"
+            dest: "/etc/docker/daemon.json"
+            mode: '0664'
+
+        - name: start docker
+          service:
+            name: docker
+            state: started
+
+    - name: import gickup role
+      import_role: 
+        name: "ansible-role-gickup"

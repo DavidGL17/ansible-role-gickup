@@ -1,4 +1,5 @@
 ---
+# Cannot start service gickup: OCI runtime create failed: container_linux.go:380: starting container process caused: exec: "/conf.yml": permission denied: unknown
 
 - name: Ensure base folder exists
   file: 
@@ -8,13 +9,17 @@
     owner: 1000
     group: 1000
 
+- name: clone gickup repo
+  git:
+    repo: https://github.com/cooperspencer/gickup.git
+    dest: "{{ base_folder }}"
+    update: false
+
 - name: copy docker-compose and config templates
   template:
     src: "{{ item.src }}"
     dest: "{{ base_folder }}/{{ item.dest }}" 
-    owner: 1000
-    group: 1000
-    mode: '0664'
+    mode: '0666'
   with_items: 
     - src: gickup-docker-compose.yml.j2
       dest: docker-compose.yml
@@ -22,8 +27,9 @@
       dest: conf.yml
   notify: Restart gickup
 
+
 - name: Ensure gickup is running.
   community.docker.docker_compose:
     project_src: "{{ base_folder }}"
-    build: false
+    build: true
   become: false
