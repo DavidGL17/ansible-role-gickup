@@ -1,7 +1,7 @@
 Role Name
 =========
 
-An ansible role that creates a docker container with gickup for automatic github, gitlab,... backup
+An ansible role that creates a docker container with [gickup](https://github.com/cooperspencer/gickup) for automatic github, gitlab,... backup
 
 Requirements
 ------------
