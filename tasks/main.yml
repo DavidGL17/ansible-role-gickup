@@ -1,6 +1,4 @@
 ---
-# Cannot start service gickup: OCI runtime create failed: container_linux.go:380: starting container process caused: exec: "/conf.yml": permission denied: unknown
-
 - name: Ensure base folder exists
   file: 
     path: "{{ base_folder }}"
