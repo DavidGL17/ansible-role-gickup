@@ -2,7 +2,6 @@ version: "3"
 services:
   gickup:
     container_name: gickup
-    build: .
     image: buddyspencer/gickup:latest
     volumes:
       - '{{ destination_local_path }}/conf.yml:/gickup/conf.yml' 

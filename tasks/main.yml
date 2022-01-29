@@ -7,17 +7,6 @@
     owner: 1000
     group: 1000
 
-- name: Ensure git is installed
-  package:
-    name: git
-    state: present
-
-- name: clone gickup repo
-  git:
-    repo: https://github.com/cooperspencer/gickup.git
-    dest: "{{ base_folder }}"
-    update: false
-
 - name: copy docker-compose and config templates
   template:
     src: "{{ item.src }}"
@@ -34,5 +23,5 @@
 - name: Ensure gickup is running.
   community.docker.docker_compose:
     project_src: "{{ base_folder }}"
-    build: true
+    build: false
   become: false
