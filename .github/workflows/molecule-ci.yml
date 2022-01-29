@@ -39,7 +39,6 @@ jobs:
           - debian11
           - debian10
           - fedora34
-          - centos7
 
     steps:
       - name: Check out the codebase.
