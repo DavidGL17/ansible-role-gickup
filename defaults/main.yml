@@ -81,6 +81,8 @@ cron_value: "0 22 * * *"
 # log
 #
 
+## TODO ensure you can get the logs from the container (add )
+
 enable_log: true
 
 log_timeformat: "2006-01-02 15:04:05"
@@ -99,4 +101,4 @@ file_logging_maxage: 42
 
 metrics_endpoint: "/metrics"
 
-metrics_listen_address: ":6178"
+metrics_listen_address: "6178"
