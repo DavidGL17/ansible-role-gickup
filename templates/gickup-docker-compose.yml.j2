@@ -10,6 +10,8 @@ services:
       TZ: {{ timezone }}
     command: ["/gickup/conf.yml"]
     restart: unless-stopped
+    ports: 
+      - '{{ metrics_listen_address }}:{{ metrics_listen_address }}'
 
 
 volumes:

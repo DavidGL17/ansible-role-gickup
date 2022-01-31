@@ -23,9 +23,6 @@
   vars:
     pip_install_packages:
       - name: docker-compose
-      - name: docker
-    docker_users:
-      - root
 
   tasks: 
     - name: import pip role
