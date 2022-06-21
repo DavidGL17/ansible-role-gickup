@@ -3,7 +3,7 @@ Role Name
 
 An ansible role that creates a docker container with [gickup](https://github.com/cooperspencer/gickup) for automatic github, gitlab,... backup. 
 
-Requriements
+Requirements
 ------------
 
 There are no special requirements for this role
@@ -180,6 +180,11 @@ License
 -------
 
 MIT
+
+Tests
+-----
+
+[![CI](https://github.com/DavidGL17/ansible-role-gickup/actions/workflows/molecule-ci.yml/badge.svg)](https://github.com/DavidGL17/ansible-role-gickup/actions/workflows/molecule-ci.yml)
 
 Author Information
 ------------------
