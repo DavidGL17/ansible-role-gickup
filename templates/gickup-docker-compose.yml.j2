@@ -4,7 +4,7 @@ services:
     container_name: gickup
     image: buddyspencer/gickup:latest
     volumes:
-      - '{{ destination_local_path }}/conf.yml:/gickup/conf.yml' 
+      - '{{ base_folder }}/conf.yml:/gickup/conf.yml' 
       - '{{ destination_local_path }}:/output'
     environment:
       TZ: {{ timezone }}
