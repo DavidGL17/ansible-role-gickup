@@ -43,7 +43,7 @@ source:
 
 destination:
   local:
-    - path: {{ destination_local_path }}
+    - path: /output
       structured: {{ destination_local_structured }} # checks repos out like hostersite/user|organization/repo
 
 {% if enable_cron %}
