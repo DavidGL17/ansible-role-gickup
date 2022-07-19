@@ -19,7 +19,6 @@
       dest: conf.yml
   notify: Restart gickup
 
-
 - name: Ensure gickup is running.
   community.docker.docker_compose:
     project_src: "{{ base_folder }}"
