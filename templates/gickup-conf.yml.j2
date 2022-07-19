@@ -54,7 +54,7 @@ cron: {{ cron_value }} # optional
 log: # optional
   timeformat: {{ log_timeformat }} # you can use a custom time format, use https://yourbasic.org/golang/format-parse-string-time-date-example/ to check how date formats work in go
   {% if enable_file_logging %}
-  file-logging: # optional
+file-logging: # optional
     dir: {{ file_logging_dir }} # directory to log into
     file: {{ file_logging_file }} # file to log into
     maxage: {{ file_logging_maxage }} # keep logs for 7 days
